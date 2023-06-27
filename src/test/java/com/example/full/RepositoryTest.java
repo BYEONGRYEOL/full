@@ -29,6 +29,7 @@ public class RepositoryTest {
             entityRepository.save(jpaEntity);
         });
     }
+
     @Test
     public void findAllTest(){
         List<JPAEntity> entityList = entityRepository.findAll();
@@ -36,4 +37,5 @@ public class RepositoryTest {
             log.info("[Findall]:" + e.getId() +"|||" + e.getMemoText());
         }
     }
+
 }
