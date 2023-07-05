@@ -157,7 +157,7 @@ public class MemberRepositoryTest {
         roleRepository.saveAll(roles); // Persistent RoleType
         clear();
 
-        Member member = memberRepository.save(createMemberWithRoles(roles));
+        Member member = memberRepository.save(createMemberWithRoles(roleRepository.findAll())); // 저장되어있는 role (N) 로 member(1) 를 만든다.
         clear();
         //when
 
@@ -190,6 +190,7 @@ public class MemberRepositoryTest {
 
         // then
         List<MemberRole> result = em.createQuery("select mr from MemberRole mr", MemberRole.class).getResultList();
+        assertThat(result.size()).isZero();
     }
     private Member createMember(){
         return new Member("sbl1998@naver.com", "asdf", "서병렬", "지수조아", emptyList());
