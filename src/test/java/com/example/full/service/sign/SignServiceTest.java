@@ -125,11 +125,24 @@ class SignServiceTest {
         given(memberRepository.findByEmail(anyString())).willReturn(Optional.empty());
         //when
         //then
-        assertThatThrownBy(()->signService.signIn(anySignInRequest())).isInstanceOf(LoginFailureException.class);
+        assertThatThrownBy(()->signService.signIn(mySignInRequest())).
+                isInstanceOf(LoginFailureException.class);
     }
 
-    private SignInRequest anySignInRequest(){
-        return new SignInRequest(anyString(), anyString());
+    @Test
+    @DisplayName("트린 비밀번호 로그인 테스트")
+    void invalidePasswordSignInTest(){
+        //given
+
+        //when
+        //then
+
+    }
+
+    private SignInRequest mySignInRequest()
+    {
+        return new SignInRequest("email", "password");
+
     }
 
 }
